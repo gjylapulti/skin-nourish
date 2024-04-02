@@ -18,7 +18,6 @@ burger.addEventListener("click", () => {
   }
   burger.classList.toggle("active");
 });
-
 const videos = gsap.utils.toArray(".video");
 gsap.set(videos, { opacity: 0 });
 
@@ -27,6 +26,7 @@ videos.forEach((video) => {
     trigger: video,
     start: "top center",
     end: "bottom center",
+
     onEnter: () => {
       gsap.to(video, { opacity: 1 });
       video.play();
@@ -36,3 +36,16 @@ videos.forEach((video) => {
     onLeaveBack: () => video.pause(),
   });
 });
+
+document
+  .querySelector(".services-link")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    const facialsSection = document.querySelector(".facials");
+    facialsSection.scrollIntoView({ behavior: "smooth" });
+    gsap.to(".links", { x: "100%", duration: 0.05 }); // Animation duration set to 0.5 seconds
+
+    gsap.set("body", { overflow: "auto" }); // Allow scrolling in other sections
+
+    gsap.set("body", { overflowX: "hidden" }); // Allow scrolling in other sections
+  });
